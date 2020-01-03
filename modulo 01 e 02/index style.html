@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <ul :class="{ column: mudarGrid }" >
+          <li @click="mudarCor" :style="{background: corGerada}">Sobre</li>
+          <li @click="mudarCor" :style="{background: corGerada}">Produtos</li>
+          <li @click="mudarCor" :style="{background: corGerada}">Serviços</li>
+          <li @click="mudarCor" :style="{background: corGerada}">Contato</li>
+      </ul>
+      <button @click="mudarGrid = !mudarGrid">Mudar Grid</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          mudarGrid: false,
+          corGerada: "",
+        },
+        methods: {
+          mudarCor() {
+            const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            this.corGerada = color;
+          }
+        },
+      });
+    </script>
+
+<style>
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: monospace;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
+    }
+    .column {
+      flex-direction: column;
+    }
+    li {
+      padding: 20px;
+      background: #84e;
+      color: white;
+      border-radius: 4px;
+      margin: 10px;
+      flex: 4;
+      text-align: center;
+    }
+  </style>
+
+  </body>
+</html>
+
+<!-- Crie um gerador de cores, toda vez que o usuário clicar
+em cima da lista, os itens trocam de cor.
+
+Gerador de cor:
+const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+-->

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+  <body>
+
+
+    <div id="app">
+      <form-acoes></form-acoes> 
+    </div>
+
+
+    <script type="module">
+      const DadosAcao = {
+        name: "DadosAcao",
+        props: ["acoes"],
+        template: `<ul><li v-for="item, key, index in acoes" :key="key + index" :id="key + index">{{key}}: {{item}}</li></ul>`
+      }
+
+    const FormAcoes = {
+      name: "FormAcoes",
+      components: {
+        DadosAcao
+      },
+      data() {
+        return {
+          siglaAcao: "",
+          quote: {}
+        }
+      },
+      methods: {
+        puxarAcao() {
+          fetch(`https://cloud.iexapis.com/stable/stock/${this.siglaAcao}/quote?token=sk_a266a088874248aba4d354e7bd903142`)
+          .then(r => r.json())
+          .then(r => {
+            this.quote = r
+          })
+        }
+      },
+      template: `<div>
+        <input type="text" placeholder="digite o nome aqui" v-model="siglaAcao"/>
+        <button @click="puxarAcao">Puxar Acoes</button>
+        <dados-acao :acoes="quote"></dados-acao>
+        </div>`
+    }
+
+    const vm = new Vue({
+      el: "#app",
+      components: {
+        FormAcoes
+      }
+    })
+
+    </script>
+  </body>
+</html>
+<!-- 
+  Crie um componente com um campo de input e um botão para enviar o valor.
+  Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+  simbolos ex:
+  aapl -> Apple
+  goog -> Google
+  msft -> Microsoft
+  amzn -> Amazon
+  fb -> Facebook
+
+  Ao clicar no botão, faça um fetch com a API:
+  https://api.iextrading.com/1.0/stock/${SIMBOLO}/quote
+
+  O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+  Envia as informações utilizando prop
+ 
+  Mostre todas as informações do fetch utilizando um loop.
+ -->

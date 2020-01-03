@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+
+    <title>Vue.js</title>
+  </head>
+  <body>
+
+
+    <div id="app">
+      <lista-produtos :classes="tipos"></lista-produtos>
+    </div>
+
+
+    <script type="module">
+
+    const ListaProdutos = {
+      name: "ListaProdutos",
+      props: ["classes"],
+      template: `<ul>
+      <li v-for="classe in classes">{{classe}}</li>
+      </ul>`
+    }
+
+    const vm = new Vue({
+      el: "#app",
+      data: {
+        tipos: ["Herói", "Monstro", "Humano", "Suporte"]
+      },
+      components: {
+        ListaProdutos
+      }
+    })
+
+    </script>
+  </body>
+</html>
+<!-- 
+  Crie um componente com um campo de input e um botão para enviar o valor.
+  Nesse campo de input será possível escrever o simbolo de empresas americanas
+
+  simbolos ex:
+  aapl -> Apple
+  goog -> Google
+  msft -> Microsoft
+  amzn -> Amazon
+  fb -> Facebook
+
+  Ao clicar no botão, faça um fetch com a API:
+  https://api.iextrading.com/1.0/stock/${SIMBOLO}/quote
+
+  O resultado do fetch deverá ser mostrado em um componente filho do formulário.
+  Envia as informações utilizando prop
+ 
+  Mostre todas as informações do fetch utilizando um loop.
+ -->

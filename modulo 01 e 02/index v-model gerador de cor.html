@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <label for="background">Background: </label>
+      <input type="color" id="background" v-model="btn.background" />
+      <label for="color">Color: </label>
+      <input type="color" id="color" v-model="btn.color" />
+      <label for="width">Width: </label>
+      <input id="width" v-model="btn.width" />
+      <label for="height">Height: </label>
+      <input id="height" v-model="btn.height" />
+      <label for="borderRadius">Border-radius: </label>
+      <input id="borderRadius" v-model="btn.borderRadius" />
+      <br>
+      <label for="fontSize">Font-size: </label>
+      <input id="fontSize" v-model="btn.fontSize" />
+      <label for="fontFamily">Font-family: </label>
+      <input id="fontFamily" v-model="btn.fontFamily" />
+      <label for="textAlign">Text-align: </label>
+      <input id="textAlign" v-model="btn.textAlign" />
+      
+
+      <a :style="btn" href="http://www.animeblade.com.br">Clique aqui</a>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          btn: {
+            background: "",
+            width: "100px",
+            height: "100px",
+            color: "100px",
+            fontSize: "12px",
+            fontFamily: "Verdana, sans-serif",
+            textAlign: "center",
+            borderRadius: "10px",
+            margin: "20px 30px",
+          }
+        }
+      });
+    </script>
+    <style>
+    label, a { display: block;}
+    </style>
+  </body>
+</html>
+
+<!-- 
+  1 - Crie um criador de botões.
+
+  O usuário poderá definir:
+  width,
+  height,
+  font-size,
+  font-family,
+  text-align,
+  background,
+  color,
+  border-radius,
+
+  As escolhas serão feitas em campos de
+  formulário. Cada escolha deverá ser 
+  refletida em um elemento (o botão).
+
+
+  2 - Crie um formulário com, nome, email, telefone e mensagem.
+  Ao clicar em enviar, as informações preenchidas no formulário
+  devem aparecer abaixo do mesmo. (previna o comportamento padrão do botão enviar)
+ -->

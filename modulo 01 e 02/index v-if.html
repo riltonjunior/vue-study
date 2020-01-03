@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+<style>
+    .verde {
+      color: green;
+    }
+    .vermelho {
+      color: red;
+      }
+</style>
+<div id="app">
+<!--
+  Simule a adição de um produto no carrinho
+  este produto possui estoque de 7 itens
+  (utilize a mesma ideia do contador).
+
+  Ao atingir 7 itens mostre uma mensagem informando
+  não ser possível adicinar mais do que 7 itens.
+
+  Remova também o botão de adicionar itens.
+-->
+<p>Banana - Estoque: {{produtoEstoque}}</p>
+<p>Carrinho: {{produtoQtd}}</p>
+<button v-show="produtoEstoque" @click="adicionarItem">+</button>
+<button v-show="produtoQtd" @click="removerItem">-</button>
+<p v-show="produtoEstoque == 0"> Nao temos mais produto em estoque.</p>
+</div>
+<script>
+  const vm = new Vue({
+    el: "#app",
+    data: function() {
+      return {
+        produtoQtd: 0,
+        produtoEstoque: 7
+      }
+    },
+    methods: {
+      adicionarItem() {
+          this.produtoQtd++;
+          this.produtoEstoque--;
+      },
+      removerItem() {
+          this.produtoQtd--;
+          this.produtoEstoque++;
+      },
+      alertaCompra() {
+          alert("produto indisponivel");
+      },
+    }
+  })
+</script>
+</body>
+</html>

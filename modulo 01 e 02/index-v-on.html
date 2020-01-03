@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+<style>
+    .verde {
+      color: green;
+    }
+    .vermelho {
+      color: red;
+      }
+</style>
+<div id="app">
+    <ul>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/aapl/quote?token=sk_a266a088874248aba4d354e7bd903142">Apple</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/googl/quote?token=sk_a266a088874248aba4d354e7bd903142">Google</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/amzn/quote?token=sk_a266a088874248aba4d354e7bd903142">Amazon</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/ebay/quote?token=sk_a266a088874248aba4d354e7bd903142">Ebay</a></li>
+        <li><a @click.prevent="puxarAcao" href="https://cloud.iexapis.com/stable/stock/pypl/quote?token=sk_a266a088874248aba4d354e7bd903142">Paypal</a></li>
+      </ul>
+      <p></p>
+      <div>
+          <p>Company name: {{acao.companyName}}</p>
+          <p>Latest price: {{acao.latestPrice}}</p>
+          <p>Company Name: {{acao.marketCap}}</p>
+      </div>
+      <!--
+        Utilizando API
+        https://cloud.iexapis.com/stable/stock/aapl/quote
+      
+        Adicione um evento de clique a cada <a> do html
+        acima e previna o comportamento padrão.
+      
+        Faça o fetch dos dados do href ao click e mostre na
+        interface o companyName, latestPrice, marketCap
+      -->
+      
+</div>
+<script>
+  const vm = new Vue({
+    el: "#app",
+    data: function() {
+      return {
+        acao: {},
+      }
+    },
+    methods: {
+      puxarAcao(event) {
+        const url = event.currentTarget.href;
+        fetch(url)
+        .then(r => r.json())
+        .then(r => {
+          this.acao = r;
+        })
+      }
+    }
+  })
+</script>
+</body>
+</html>

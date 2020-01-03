@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+<style>
+    .verde {
+      color: green;
+    }
+    .vermelho {
+      color: red;
+      }
+</style>
+
+<div id="app">
+    <button @click="puxarAula">Puxar Aula</button>
+
+    <div v-for="curso in cursos">
+      <h3><a :href="curso.link">{{curso.curso}}</a></h3>
+      <ul>
+        <li v-for="{nome, tempo} in curso.aulas">{{nome}} ({{tempo}})</li>
+    </ul>
+    </div>
+  
+</div>
+
+<script>
+const vm = new Vue({
+  el: "#app",
+  data: {
+    cursos: {},
+  },
+  methods: {
+    puxarAula() {
+      fetch("./cursos.json")
+      .then(r => r.json())
+      .then(r => {
+        this.cursos = r;
+      })
+    }
+  },
+});
+</script>
+</body>
+</html>

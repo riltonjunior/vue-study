@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="./vue.js"></script>
+    <title>Vue.js</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <p :class="{ ativo: estaAtivo, cor: possuiCor }">Texto Ativo</p>
+      <button @click="estaAtivo = !estaAtivo" >Ativar / Desativar</button>
+      <button @click="possuiCor = !possuiCor">Cor</button>
+    </div>
+
+    <script>
+      const vm = new Vue({
+        el: "#app",
+        data: {
+          estaAtivo: true,
+          possuiCor: false,
+        }
+      });
+    </script>
+
+    <style>
+      .ativo {
+        display: block;
+      }
+      .azul {
+        color: blue;
+      }
+      .cor {
+        color: green;
+      }
+    </style>
+  </body>
+</html>

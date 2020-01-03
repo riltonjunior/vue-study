@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./vue.js"></script>
+  <title>Vue.js</title>
+</head>
+<body>
+
+<style>
+    .verde {
+      color: green;
+    }
+    .vermelho {
+      color: red;
+      }
+</style>
+<!-- Acerte o código abaixo -->
+<div id="app">
+    <button @click="handleClick">Clique aqui</button>
+    {{contador}}
+    <button @click="ativo = !ativo">Toggle</button>
+    <p v-if="ativo">Mostrar texto</p>
+    {{ativo}}
+</div>
+
+  <script>
+    const vm = new Vue({
+      el: "#app",
+      data: function() {
+        return {
+          contador: 0,
+          ativo: true,
+        }
+      },
+      methods: {
+        handleClick(event) {
+          console.log(event);
+        }
+    },
+    })
+  </script>
+</body>
+</html>
